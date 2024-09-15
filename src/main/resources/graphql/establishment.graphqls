@@ -1,0 +1,47 @@
+extend type Mutation {
+    addEstablishment(establishmentInput: EstablishmentInput): Establishment
+}
+extend type Query {
+    establishmentById(id: ID): Establishment
+    establishments: [Establishment]
+}
+
+type Establishment {
+    id: ID
+    name: String
+    cnpj: String
+    address: Address
+    phone: String
+    qtdMotorcycles: Int
+    qtdCars: Int
+}
+
+input EstablishmentInput {
+    name: String!
+    cnpj: String!
+    address: AddressInput
+    phone: String!
+    qtdMotorcycles: Int!
+    qtdCars: Int!
+}
+
+type Address {
+
+    street: String
+    number: Int
+    neighborhood: String
+    city: String
+    uf: String
+    cep: String
+    complement: String
+}
+
+input AddressInput {
+    street: String
+    number: Int
+    neighborhood: String
+    city: String
+    uf: String
+    cep: String
+    complement: String
+}

@@ -1,0 +1,24 @@
+extend type Mutation {
+    registerEntry(vehicleId: ID, establishmentId: ID ): AccessControl
+    registerExit(vehicleId: ID, establishmentId: ID): AccessControl
+}
+
+extend type Query {
+    accessControlById(id: ID): AccessControl
+    accessControls: [AccessControl]
+    findByVehiclePlate(vehiclePlate: String): AccessControl
+}
+
+
+type AccessControl {
+    id: ID
+    establishment: Establishment
+    vehicle: Vehicle
+}
+
+input AccessControlInput {
+    establishmentId: ID!
+    vehicleId: ID!
+}
+
+
