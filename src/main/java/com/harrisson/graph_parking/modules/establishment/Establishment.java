@@ -29,8 +29,8 @@ public class Establishment extends EntityBase {
     @Embedded
     private Address address;
     private String phone;
-    private Integer qtdMotorcycles;
-    private Integer qtdCars;
+    private Integer qtMotorcycles;
+    private Integer qtCars;
 
 
 

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -27,7 +28,7 @@ public class AccessControl extends EntityBase {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id", nullable = false)
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @ManyToOne
@@ -35,9 +36,12 @@ public class AccessControl extends EntityBase {
     private Establishment establishment;
 
     @Column(name = "entry_time")
-    private LocalDateTime entryTime = LocalDateTime.now();
+    private LocalDateTime entryTime;
 
     @Column(name = "exit_time")
-    private LocalDateTime exitTime;
+    private LocalDateTime exitTime ;
+
+    @Column(name = "active")
+    private Boolean active;
 
 }

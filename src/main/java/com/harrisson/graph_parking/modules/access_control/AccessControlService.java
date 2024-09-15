@@ -7,6 +7,7 @@ import com.harrisson.graph_parking.modules.vehicle.VehicleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -38,27 +39,35 @@ public class AccessControlService {
         var establishment = establishmentRepository.findById(establishmentId).orElseThrow(() -> new RuntimeException("Establishment not found"));
 
         if (vehicle.getType().equals(VehicleType.CAR)) {
-            int currentCarCount = repository.countByEstablishmentIdAndVehicleType(establishmentId, "CAR");
-            if (currentCarCount >= establishment.getQtdCars()) {
+            Integer currentCarCount = repository.countByEstablishmentIdAndVehicleType(establishmentId, VehicleType.CAR);
+            if (currentCarCount >= establishment.getQtCars()) {
                 throw new RuntimeException("Limite de vagas para carros atingido");
             }
         } else if (vehicle.getType().equals(VehicleType.MOTORCYCLE)) {
-            int currentMotorcycleCount = repository.countByEstablishmentIdAndVehicleType(establishmentId, "MOTORCYCLE");
-            if (currentMotorcycleCount >= establishment.getQtdMotorcycles()) {
+            Integer currentMotorcycleCount = repository.countByEstablishmentIdAndVehicleType(establishmentId, VehicleType.MOTORCYCLE);
+            if (currentMotorcycleCount >= establishment.getQtMotorcycles()) {
                 throw new RuntimeException("Limite de vagas para motocicletas atingido");
             }
         }
 
-        return AccessControl.builder()
+        var accessControl = AccessControl.builder()
                 .vehicle(vehicle)
                 .establishment(establishment)
-                .entryTime(LocalDateTime.now())
+                .entryTime(LocalDateTime.now()) // Setando a data de entrada
+                .active(true)
                 .build();
+        return repository.save(accessControl);
     }
 
     public AccessControl registerExit(String plate) {
-        var access = this.findAccessControlByVehiclePlate(plate);
+        var access = repository.findByVehicle_PlateAndActiveIsTrue(plate);
+
+        if (access == null) {
+            throw new RuntimeException("Acesso não encontrado");
+        }
         access.setExitTime(LocalDateTime.now());
+        access.setActive(false);
+
         return repository.save(access);
     }
 
@@ -67,7 +76,7 @@ public class AccessControlService {
     }
 
     public AccessControl findAccessControlByVehiclePlate(String vehiclePlate) {
-        return repository.findByVehiclePlate(vehiclePlate);
+        return repository.findByVehicle_PlateAndActiveIsTrue(vehiclePlate);
     }
 
 

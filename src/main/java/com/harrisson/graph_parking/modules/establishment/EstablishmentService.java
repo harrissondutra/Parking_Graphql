@@ -20,8 +20,8 @@ public class EstablishmentService {
                 .cnpj(establishmentInput.cnpj())
                 .address(new Address(establishmentInput.address()))
                 .phone(establishmentInput.phone())
-                .qtdMotorcycles(establishmentInput.qtMotorcycles())
-                .qtdCars(establishmentInput.qtCars())
+                .qtMotorcycles(establishmentInput.qtMotorcycles())
+                .qtCars(establishmentInput.qtCars())
                 .build();
         return repository.save(establishment);
     }

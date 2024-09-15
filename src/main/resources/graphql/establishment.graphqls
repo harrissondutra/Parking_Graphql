@@ -12,8 +12,8 @@ type Establishment {
     cnpj: String
     address: Address
     phone: String
-    qtdMotorcycles: Int
-    qtdCars: Int
+    qtMotorcycles: Int
+    qtCars: Int
 }
 
 input EstablishmentInput {
@@ -21,8 +21,8 @@ input EstablishmentInput {
     cnpj: String!
     address: AddressInput
     phone: String!
-    qtdMotorcycles: Int!
-    qtdCars: Int!
+    qtMotorcycles: Int!
+    qtCars: Int!
 }
 
 type Address {
