@@ -1,6 +1,7 @@
 extend type Mutation {
-    registerEntry(vehicleId: ID, establishmentId: ID ): AccessControl
-    registerExit(vehicleId: ID, establishmentId: ID): AccessControl
+    registerEntry(plate: String, establishmentId: ID ): AccessControl
+    registerExit(plate:String): AccessControl
+    createAccessControl(establishmentId:ID): AccessControl
 }
 
 extend type Query {

@@ -14,14 +14,19 @@ public class AccessControlController {
     @Autowired
     private AccessControlService service;
 
+    @MutationMapping("createAccessControl")
+    public AccessControl createAccessControl(@Argument UUID establishmentId) {
+        return service.createAccessControl(establishmentId);
+    }
+
     @MutationMapping("registerEntry")
-    public AccessControl registerEntry(@Argument UUID vehicleId, @Argument UUID establishmentId) {
-        return service.registerEntry(vehicleId, establishmentId);
+    public AccessControl registerEntry(@Argument String plate, @Argument UUID establishmentId) {
+        return service.registerEntry(plate, establishmentId);
     }
 
     @MutationMapping("registerExit")
-    public AccessControl registerExit(@Argument UUID vehicleId, @Argument UUID establishmentId) {
-        return service.registerExit(vehicleId, establishmentId);
+    public AccessControl registerExit(@Argument String plate) {
+        return service.registerExit(plate);
     }
 
     @QueryMapping("accessControls")

@@ -1,6 +1,7 @@
 package com.harrisson.graph_parking.modules.access_control;
 
 import com.harrisson.graph_parking.modules.establishment.EstablishmentRepository;
+import com.harrisson.graph_parking.modules.vehicle.Vehicle;
 import com.harrisson.graph_parking.modules.vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,24 +21,31 @@ public class AccessControlService {
     @Autowired
     private EstablishmentRepository establishmentRepository;
 
-    public AccessControl registerEntry(UUID vehicleId, UUID establishmentId) {
-        var vehicle = vehicleRepository.findById(vehicleId).orElseThrow(() -> new RuntimeException("Vehicle not found"));
+    public AccessControl createAccessControl(UUID establishmentId) {
+        var establishment = establishmentRepository.findById(establishmentId).orElseThrow(() -> new RuntimeException("Establishment not found"));
+        var access = AccessControl.builder()
+                .establishment(establishment)
+                .build();
+        return repository.save(access);
+    }
+
+    public AccessControl registerEntry(String plate, UUID establishmentId) {
+        var vehicle = vehicleRepository.findByPlate(plate);
+        if (vehicle == null) {
+            vehicle = vehicleRepository.save(Vehicle.builder().plate(plate).build());
+        }
         var establishment = establishmentRepository.findById(establishmentId).orElseThrow(() -> new RuntimeException("Establishment not found"));
         return AccessControl.builder()
                 .vehicle(vehicle)
-                .establishment(establishment).build();
+                .establishment(establishment)
+                .entryTime(LocalDateTime.now())
+                .build();
     }
 
-    public AccessControl registerExit(UUID vehicleId, UUID establishmentId) {
-        var vehicle = vehicleRepository.findById(vehicleId)
-                .orElseThrow(() -> new RuntimeException("Vehicle not found"));
-        var establishment = establishmentRepository.findById(establishmentId)
-                .orElseThrow(() -> new RuntimeException("Establishment not found"));
-        return AccessControl.builder()
-                .vehicle(vehicle)
-                .establishment(establishment)
-                .exitTime(LocalDateTime.now())
-                .build();
+    public AccessControl registerExit(String plate) {
+        var access = this.findAccessControlByVehiclePlate(plate);
+        access.setExitTime(LocalDateTime.now());
+        return repository.save(access);
     }
 
     public Iterable<AccessControl> findAll() {
@@ -47,4 +55,6 @@ public class AccessControlService {
     public AccessControl findAccessControlByVehiclePlate(String vehiclePlate) {
         return repository.findByVehiclePlate(vehiclePlate);
     }
+
+
 }
