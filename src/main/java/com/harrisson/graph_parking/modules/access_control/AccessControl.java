@@ -1,5 +1,6 @@
 package com.harrisson.graph_parking.modules.access_control;
 
+import com.harrisson.graph_parking.core.EntityBase;
 import com.harrisson.graph_parking.modules.establishment.Establishment;
 import com.harrisson.graph_parking.modules.vehicle.Vehicle;
 import jakarta.persistence.*;
@@ -18,9 +19,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Audited
 @AuditTable(value = "access_control_audit", schema = "graphql_audit")
-@Table(name = "access_control", schema = "graphql")
+@Table(name = "access-control", schema = "graphql")
 @Entity
-public class AccessControl {
+public class AccessControl extends EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,5 +1,6 @@
 package com.harrisson.graph_parking.modules.vehicle;
 
+import com.harrisson.graph_parking.core.EntityBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +19,7 @@ import java.util.UUID;
 @AuditTable(value = "vehicles_audit", schema = "graphql_audit")
 @Table(name = "vehicles", schema = "graphql")
 @Entity
-public class Vehicle {
+public class Vehicle extends EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

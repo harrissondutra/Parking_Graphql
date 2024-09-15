@@ -1,5 +1,6 @@
 package com.harrisson.graph_parking.modules.establishment;
 
+import com.harrisson.graph_parking.core.EntityBase;
 import com.harrisson.graph_parking.modules.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @AuditTable(value = "establishment_audit", schema = "graphql_audit")
 @Table(name = "establishment", schema = "graphql")
 @Entity
-public class Establishment {
+public class Establishment extends EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
