@@ -5,7 +5,6 @@ extend type Mutation {
 }
 
 extend type Query {
-    accessControlById(id: ID): AccessControl
     accessControls: [AccessControl]
     findByVehiclePlate(vehiclePlate: String): AccessControl
 }
