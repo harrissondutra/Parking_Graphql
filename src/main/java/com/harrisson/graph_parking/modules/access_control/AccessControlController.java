@@ -1,5 +1,6 @@
 package com.harrisson.graph_parking.modules.access_control;
 
+import com.harrisson.graph_parking.modules.vehicle.VehicleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -20,8 +21,8 @@ public class AccessControlController {
     }
 
     @MutationMapping("registerEntry")
-    public AccessControl registerEntry(@Argument String plate, @Argument UUID establishmentId) {
-        return service.registerEntry(plate, establishmentId);
+    public AccessControl registerEntry(@Argument String plate, @Argument VehicleType type, @Argument UUID establishmentId) {
+        return service.registerEntry(plate, type, establishmentId);
     }
 
     @MutationMapping("registerExit")

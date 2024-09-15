@@ -1,5 +1,5 @@
 extend type Mutation {
-    registerEntry(plate: String, establishmentId: ID ): AccessControl
+    registerEntry(plate: String, type: VehicleType, establishmentId: ID ): AccessControl
     registerExit(plate:String): AccessControl
     createAccessControl(establishmentId:ID): AccessControl
 }

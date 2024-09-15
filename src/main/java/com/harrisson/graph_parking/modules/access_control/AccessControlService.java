@@ -3,6 +3,7 @@ package com.harrisson.graph_parking.modules.access_control;
 import com.harrisson.graph_parking.modules.establishment.EstablishmentRepository;
 import com.harrisson.graph_parking.modules.vehicle.Vehicle;
 import com.harrisson.graph_parking.modules.vehicle.VehicleRepository;
+import com.harrisson.graph_parking.modules.vehicle.VehicleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +30,25 @@ public class AccessControlService {
         return repository.save(access);
     }
 
-    public AccessControl registerEntry(String plate, UUID establishmentId) {
+    public AccessControl registerEntry(String plate, VehicleType type, UUID establishmentId) {
         var vehicle = vehicleRepository.findByPlate(plate);
         if (vehicle == null) {
-            vehicle = vehicleRepository.save(Vehicle.builder().plate(plate).build());
+            vehicle = vehicleRepository.save(Vehicle.builder().plate(plate).type(type).build());
         }
         var establishment = establishmentRepository.findById(establishmentId).orElseThrow(() -> new RuntimeException("Establishment not found"));
+
+        if (vehicle.getType().equals(VehicleType.CAR)) {
+            int currentCarCount = repository.countByEstablishmentIdAndVehicleType(establishmentId, "CAR");
+            if (currentCarCount >= establishment.getQtdCars()) {
+                throw new RuntimeException("Limite de vagas para carros atingido");
+            }
+        } else if (vehicle.getType().equals(VehicleType.MOTORCYCLE)) {
+            int currentMotorcycleCount = repository.countByEstablishmentIdAndVehicleType(establishmentId, "MOTORCYCLE");
+            if (currentMotorcycleCount >= establishment.getQtdMotorcycles()) {
+                throw new RuntimeException("Limite de vagas para motocicletas atingido");
+            }
+        }
+
         return AccessControl.builder()
                 .vehicle(vehicle)
                 .establishment(establishment)
