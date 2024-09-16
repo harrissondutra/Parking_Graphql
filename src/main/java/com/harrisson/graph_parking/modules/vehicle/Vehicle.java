@@ -29,5 +29,6 @@ public class Vehicle extends EntityBase {
     private String plate;
     @Enumerated(EnumType.STRING)
     private VehicleType type;
+    private Boolean active = true;
 
 }

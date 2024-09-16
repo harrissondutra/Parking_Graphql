@@ -29,4 +29,31 @@ public class VehicleService {
     public Vehicle findById(UUID id) {
         return repository.findById(id).orElse(null);
     }
+
+    public Vehicle updateVehicle(UUID vehicleId, VehicleInput vehicleInput) {
+        var vehicle = repository.findById(vehicleId).orElse(null);
+        if (vehicle == null) {
+           throw new RuntimeException("Vehicle not found");
+        }
+        Vehicle.builder()
+                .brand(vehicleInput.brand())
+                .model(vehicleInput.model())
+                .color(vehicleInput.color())
+                .plate(vehicleInput.plate())
+                .type(vehicleInput.type())
+                .build();
+
+        return repository.save(vehicle);
+    }
+
+    public void deleteVehicle(UUID vehicleId) {
+        var vehicle = repository.findById(vehicleId).orElseThrow();
+        vehicle.setActive(false);
+    }
+
+    public void inactiveVehicle(UUID vehicleId) {
+        var vehicle = repository.findById(vehicleId).orElseThrow();
+        var active = vehicle.getActive();
+        vehicle.setActive(!active);
+    }
 }

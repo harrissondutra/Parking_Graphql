@@ -29,4 +29,18 @@ public class VehicleController {
         return service.findById(id);
     }
 
+    @MutationMapping("updateVehicle")
+    public Vehicle updateVehicle(@Argument UUID vehicleId, @Argument VehicleInput vehicleInput) {
+        return service.updateVehicle(vehicleId, vehicleInput);
+    }
+    @MutationMapping("deleteVehicle")
+    public void deleteVehicle(@Argument UUID vehicleId) {
+        service.deleteVehicle(vehicleId);
+    }
+
+    @MutationMapping("inactiveVehicle")
+    public void inactiveVehicle(@Argument UUID vehicleId) {
+        service.inactiveVehicle(vehicleId);
+    }
+
 }

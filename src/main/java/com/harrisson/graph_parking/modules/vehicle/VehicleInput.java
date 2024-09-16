@@ -5,7 +5,8 @@ public record VehicleInput(
         String model,
         String color,
         String plate,
-        VehicleType type
+        VehicleType type,
+        Boolean active
 ) {
 
 }

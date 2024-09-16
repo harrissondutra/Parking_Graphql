@@ -26,7 +26,13 @@ registerEntry(plate: String, type: VehicleType,establishmentId: ID): AccessContr
 registerExit(plate: String): AccessControl
 createAccessControl(establishmentId: ID): AccessControl
 addEstablishment(establishmentInput: EstablishmentInput): Establishment
+updateEstablishment(establishmentId: ID, establishmentInput: EstablishmentInput): Establishment
+deleteEstablishment(establishmentId: ID): Establishment
+inactiveEstablishment(establishmentId: ID): Establishment
 addVehicle(vehicleInput: VehicleInput): Vehicle
+updateVehicle(vehicleId: ID,vehicleInput: VehicleInput): Vehicle
+deleteVehicle(vehicleId: ID): Vehicle
+inactiveVehicle(vehicleId: ID): Vehicle
 ```
 ### ***Tecnologias utilizadas:***
 - Linguagem Java  <br />

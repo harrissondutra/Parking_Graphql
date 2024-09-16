@@ -33,4 +33,34 @@ public class EstablishmentService {
     public Establishment getById(UUID id) {
         return repository.findById(id).orElse(null);
     }
+
+    public Establishment updateEstablishment(UUID establishmentId, EstablishmentInput establishmentInput) {
+        var establishment = repository.findById(establishmentId).orElse(null);
+        if (establishment == null) {
+            throw new IllegalStateException("Establishment not found");
+        }
+        Establishment.builder()
+                .name(establishmentInput.name())
+                .cnpj(establishmentInput.cnpj())
+                .address(new Address(establishmentInput.address()))
+                .phone(establishmentInput.phone())
+                .qtMotorcycles(establishmentInput.qtMotorcycles())
+                .qtCars(establishmentInput.qtCars())
+                .build();
+
+        return repository.save(establishment);
+    }
+
+    public void deleteEstablishment(UUID establishmentId) {
+        var establishment = repository.findById(establishmentId).orElse(null);
+        assert establishment != null;
+        establishment.setActive(false);
+    }
+
+    public void inactiveEstablishment(UUID establishmentId) {
+        var establishment = repository.findById(establishmentId).orElse(null);
+        assert establishment != null;
+         var active = establishment.getActive();
+        establishment.setActive(!active);
+    }
 }

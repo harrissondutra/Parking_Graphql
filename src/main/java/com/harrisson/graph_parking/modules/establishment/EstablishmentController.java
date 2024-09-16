@@ -28,4 +28,18 @@ public class EstablishmentController {
     public Establishment establishmentById(@Argument UUID id) {
         return service.getById(id);
     }
+
+    @MutationMapping("updateEstablishment")
+    public Establishment updateEstablishment(@Argument UUID establishmentId, @Argument EstablishmentInput establishmentInput) {
+        return service.updateEstablishment(establishmentId, establishmentInput);
+    }
+
+    @MutationMapping("deleteEstablishment")
+    public void deleteEstablishment(@Argument UUID establishmentId) {
+        service.deleteEstablishment(establishmentId);
+    }
+    @MutationMapping("inactiveEstablishment")
+    public void inactiveEstablishment(@Argument UUID establishmentId) {
+        service.inactiveEstablishment(establishmentId);
+    }
 }

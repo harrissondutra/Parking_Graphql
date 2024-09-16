@@ -1,5 +1,8 @@
 extend type Mutation {
     addVehicle(vehicleInput: VehicleInput): Vehicle
+    updateVehicle(vehicleId: ID, vehicleInput: VehicleInput): Vehicle
+    deleteVehicle(vehicleId: ID): Vehicle
+    inactiveVehicle(vehicleId: ID): Vehicle
 }
 
 extend type Query {
@@ -14,6 +17,7 @@ type Vehicle {
     color: String
     plate: String
     type: VehicleType
+    active: Boolean
 }
 
 input VehicleInput {
@@ -22,6 +26,7 @@ input VehicleInput {
     color: String!
     plate: String!
     type: VehicleType!
+    active: Boolean
 }
 
 enum VehicleType {

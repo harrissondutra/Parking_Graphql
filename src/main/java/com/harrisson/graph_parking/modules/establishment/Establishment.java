@@ -31,6 +31,7 @@ public class Establishment extends EntityBase {
     private String phone;
     private Integer qtMotorcycles;
     private Integer qtCars;
+    private Boolean active = true;
 
 
 

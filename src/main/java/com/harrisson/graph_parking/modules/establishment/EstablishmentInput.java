@@ -9,7 +9,8 @@ public record EstablishmentInput(
         AddressInput address,
         String phone,
         Integer qtMotorcycles,
-        Integer qtCars
+        Integer qtCars,
+        Boolean active
 
 ) {
 }

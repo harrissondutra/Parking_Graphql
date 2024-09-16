@@ -1,5 +1,8 @@
 extend type Mutation {
     addEstablishment(establishmentInput: EstablishmentInput): Establishment
+    updateEstablishment(establishmentId: ID, establishmentInput: EstablishmentInput): Establishment
+    deleteEstablishment(establishmentId: ID): Establishment
+    inactiveEstablishment(establishmentId: ID): Establishment
 }
 extend type Query {
     establishmentById(id: ID): Establishment
@@ -14,6 +17,7 @@ type Establishment {
     phone: String
     qtMotorcycles: Int
     qtCars: Int
+    active: Boolean
 }
 
 input EstablishmentInput {
@@ -23,6 +27,7 @@ input EstablishmentInput {
     phone: String!
     qtMotorcycles: Int!
     qtCars: Int!
+    active: Boolean
 }
 
 type Address {
