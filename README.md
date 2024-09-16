@@ -43,12 +43,14 @@ changeStatusVehicle(vehicleId: ID): Vehicle
 - Linguagem Java  <br />
 - Framework Spring
 - Postgres  <br />
+- Graphql <br />
 - Deploy: Railway <br />
 
 
 <div style="display: inline_block">
    <img align="center" alt="Java" height="70" width="40" src="https://seeklogo.com/images/J/java-logo-7833D1D21A-seeklogo.com.png">
    <img align="center" alt="Spring" height="40" width="40" src="https://github.com/harrissondutra/harrissondutra/blob/main/.img/logo-spring.png">
+   <img align="center" alt="Graphql" height="70" width="140" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/graphql_logo_icon_171045.png">
    <img align="center" alt="Postgres" height="40" width="40" src="https://github.com/harrissondutra/harrissondutra/blob/main/.img/postgresql_logo_icon_170835.png">
    <img align="center" alt="Railway" height="50" width="50" src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/h3m0hmstlq9maq7t8tyc">
 </div>
