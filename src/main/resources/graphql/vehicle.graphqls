@@ -2,7 +2,7 @@ extend type Mutation {
     addVehicle(vehicleInput: VehicleInput): Vehicle
     updateVehicle(vehicleId: ID, vehicleInput: VehicleInput): Vehicle
     deleteVehicle(vehicleId: ID): Vehicle
-    inactiveVehicle(vehicleId: ID): Vehicle
+    changeStatusVehicle(vehicleId: ID): Vehicle
 }
 
 extend type Query {

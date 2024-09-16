@@ -51,7 +51,7 @@ public class VehicleService {
         vehicle.setActive(false);
     }
 
-    public void inactiveVehicle(UUID vehicleId) {
+    public void changeStatusVehicle(UUID vehicleId) {
         var vehicle = repository.findById(vehicleId).orElseThrow();
         var active = vehicle.getActive();
         vehicle.setActive(!active);

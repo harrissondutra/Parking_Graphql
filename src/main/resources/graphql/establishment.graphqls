@@ -2,7 +2,7 @@ extend type Mutation {
     addEstablishment(establishmentInput: EstablishmentInput): Establishment
     updateEstablishment(establishmentId: ID, establishmentInput: EstablishmentInput): Establishment
     deleteEstablishment(establishmentId: ID): Establishment
-    inactiveEstablishment(establishmentId: ID): Establishment
+    changeStatusEstablishment(establishmentId: ID): Establishment
 }
 extend type Query {
     establishmentById(id: ID): Establishment

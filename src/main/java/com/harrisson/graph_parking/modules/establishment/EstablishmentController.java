@@ -38,8 +38,8 @@ public class EstablishmentController {
     public void deleteEstablishment(@Argument UUID establishmentId) {
         service.deleteEstablishment(establishmentId);
     }
-    @MutationMapping("inactiveEstablishment")
-    public void inactiveEstablishment(@Argument UUID establishmentId) {
-        service.inactiveEstablishment(establishmentId);
+    @MutationMapping("changeStatusEstablishment")
+    public void changeStatusEstablishment(@Argument UUID establishmentId) {
+        service.changeStatusEstablishment(establishmentId);
     }
 }

@@ -1,8 +1,6 @@
 package com.harrisson.graph_parking.modules.establishment;
 
 import com.harrisson.graph_parking.modules.address.Address;
-import com.harrisson.graph_parking.modules.address.AddressInput;
-import jakarta.persistence.Embedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +55,7 @@ public class EstablishmentService {
         establishment.setActive(false);
     }
 
-    public void inactiveEstablishment(UUID establishmentId) {
+    public void changeStatusEstablishment(UUID establishmentId) {
         var establishment = repository.findById(establishmentId).orElse(null);
         assert establishment != null;
          var active = establishment.getActive();

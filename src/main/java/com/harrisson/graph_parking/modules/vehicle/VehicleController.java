@@ -38,9 +38,9 @@ public class VehicleController {
         service.deleteVehicle(vehicleId);
     }
 
-    @MutationMapping("inactiveVehicle")
-    public void inactiveVehicle(@Argument UUID vehicleId) {
-        service.inactiveVehicle(vehicleId);
+    @MutationMapping("changeStatusVehicle")
+    public void changeStatusVehicle(@Argument UUID vehicleId) {
+        service.changeStatusVehicle(vehicleId);
     }
 
 }

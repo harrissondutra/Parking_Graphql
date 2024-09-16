@@ -31,13 +31,13 @@ createAccessControl(establishmentId: ID): AccessControl
 addEstablishment(establishmentInput: EstablishmentInput): Establishment
 updateEstablishment(establishmentId: ID, establishmentInput: EstablishmentInput): Establishment
 deleteEstablishment(establishmentId: ID): Establishment
-inactiveEstablishment(establishmentId: ID): Establishment
+changeStatusEstablishment(establishmentId: ID): Establishment
 
 - Vehicle
 addVehicle(vehicleInput: VehicleInput): Vehicle
 updateVehicle(vehicleId: ID,vehicleInput: VehicleInput): Vehicle
 deleteVehicle(vehicleId: ID): Vehicle
-inactiveVehicle(vehicleId: ID): Vehicle
+changeStatusVehicle(vehicleId: ID): Vehicle
 ```
 ### ***Tecnologias utilizadas:***
 - Linguagem Java  <br />
